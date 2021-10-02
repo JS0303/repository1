@@ -130,19 +130,19 @@ public class ProductDAO {
 		return map;
 	}
 
-	public void updateUser(ProductVO vo) throws Exception {
+	public void updateProduct(ProductVO productVO) throws Exception {
 		
 		Connection con = DBUtil.getConnection();
 
-		String sql = "update PRODUCT set USER_NAME=?,CELL_PHONE=?,ADDR=?,EMAIL=? where USER_ID=?";
+		String sql = "update PRODUCT SET prod_name = ?, prod_detail = ?, manufacture_day = ?, price = ?, image_file = ? WHERE prod_no = ?";
 		
 		PreparedStatement stmt = con.prepareStatement(sql);
-		stmt.setString(1, vo.getProdName());
-		stmt.setString(2, vo.getProdDetail());
-		stmt.setString(3, vo.getManuDate());
-		stmt.setInt(4, vo.getPrice());
-		stmt.setString(5, vo.getFileName());
-		stmt.setInt(6, vo.getProdNo());
+		stmt.setString(1, productVO.getProdName());
+		stmt.setString(2, productVO.getProdDetail());
+		stmt.setString(3, productVO.getManuDate());
+		stmt.setInt(4, productVO.getPrice());
+		stmt.setString(5, productVO.getFileName());
+		stmt.setInt(6, productVO.getProdNo());
 		stmt.executeUpdate();
 		
 		con.close();

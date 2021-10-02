@@ -19,7 +19,7 @@ public class ProductServiceImpl implements ProductService{
 		productDAO=new ProductDAO();
 	}
 
-	public void insertProduct(ProductVO productVO) throws Exception {
+	public void addProduct(ProductVO productVO) throws Exception {
 		productDAO.insertProduct(productVO);
 	}
 
@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	public void updateProduct(ProductVO productVO) throws Exception {
-		return productDAO.updateProduct(productVO);
+		productDAO.updateProduct(productVO);
 	}
 
 	public boolean checkDuplication(int prodNo) throws Exception {
