@@ -3,7 +3,12 @@
 <%@ page import="java.util.*"  %>
 <%@ page import="com.model2.mvc.service.product.*" %>
 <%@ page import="com.model2.mvc.common.*" %>
+<%@ page import="com.model2.mvc.service.product.vo.ProductVO"%>
 
+<%
+	ProductVO productVO=(ProductVO)request.getAttribute("productVO");
+		System.out.println("addProductView.jsp에서 불러온 productVO : "+request.getAttribute("productVO"));
+%>
 
 <html>
 <head>

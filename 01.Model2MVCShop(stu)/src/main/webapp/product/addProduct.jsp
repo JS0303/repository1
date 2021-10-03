@@ -53,7 +53,6 @@
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="105"><%=productVO.getProdName() %></td>
-					<td>	</td>
 				</tr>
 			</table>
 		</td>

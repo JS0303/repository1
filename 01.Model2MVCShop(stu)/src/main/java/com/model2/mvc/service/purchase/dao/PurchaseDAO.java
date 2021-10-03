@@ -8,8 +8,9 @@ import java.util.HashMap;
 
 import com.model2.mvc.common.SearchVO;
 import com.model2.mvc.common.util.DBUtil;
+import com.model2.mvc.service.product.vo.ProductVO;
 import com.model2.mvc.service.purchase.vo.PurchaseVO;
-
+import com.model2.mvc.service.user.vo.UserVO;
 
 
 public class PurchaseDAO {
@@ -18,40 +19,64 @@ public class PurchaseDAO {
 	public PurchaseDAO(){
 	}
 	///Method
-	public void addPurchase(PurchaseVO purchaseVO) throws Exception {
+	public void insertPurchase(PurchaseVO purchaseVO) throws Exception {
 		
 		Connection con = DBUtil.getConnection();
 		
-		String sql = "insert into TRANSACTION values (seq_product_prod_no.nextval,?,?,?,?,?,sysdate)";
+		String sql = "insert into TRANSACTION values (seq_transaction_tran_no.nextval,?,?,?,?,?,?,?,?,sysdate,?)";
 				
 		PreparedStatement stmt = con.prepareStatement(sql);
+		System.out.println(":: PurchaseDAO의 준비된 insertPurchase sql ::"+sql);
+		stmt.setObject(1, purchaseVO.getPurchaseProd());
+		stmt.setObject(2, purchaseVO.getBuyer());
+		stmt.setString(3, purchaseVO.getPaymentOption());
+		stmt.setString(4, purchaseVO.getReceiverName());
+		stmt.setString(5, purchaseVO.getReceiverPhone());
+		stmt.setString(6, purchaseVO.getDivyAddr());
+		stmt.setString(7, purchaseVO.getDivyRequest());
+		stmt.setString(8, purchaseVO.getTranCode());
+		stmt.setString(9, purchaseVO.getDivyDate());
+		
+		stmt.executeUpdate();
 		
 		con.close();
 	}
 	
-	public PurchaseVO getPurchase(int tranNo) throws Exception {
+	public PurchaseVO findPurchase(int tranNo) throws Exception {
 		
 		Connection con = DBUtil.getConnection();
 		
-		String sql =
+		String sql = "select * from PRODUCT where tran_no=?";
 				
 		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.setInt(1, tranNo);
+		
+		ResultSet rs = stmt.executeQuery();
+
+		PurchaseVO purchaseVO = null;
+		
+		while (rs.next()) {
+			purchaseVO.setTranNo(rs.getInt("TRAN_NO"));
+			purchaseVO.setBuyer((UserVO)rs.getObject("BUYER_ID"));
+			purchaseVO.setPaymentOption(rs.getString("PAYMENT_OPTION"));
+			purchaseVO.setReceiverName(rs.getString("RECEIVER_NAME"));
+			purchaseVO.setReceiverPhone(rs.getString("RECEIVER_PHONE"));
+			purchaseVO.setDivyAddr(rs.getString("DEMAILADDR"));
+			purchaseVO.setTranCode(rs.getString("TRAN_STATUS_CODE"));
+			purchaseVO.setOrderDate(rs.getDate("ORDER_DATA"));
+			purchaseVO.setDivyDate(rs.getString("DLVY_DATE"));
+		}
 		
 		con.close();
 		
+		return purchaseVO;
+	}
+	
+	public PurchaseVO getPurchase(int tranNo) throws Exception {
 		return null;
 	}
 	
 	public PurchaseVO getPurchase2(int ProdNo) throws Exception {
-		
-		Connection con = DBUtil.getConnection();
-		
-		String sql =
-				
-		PreparedStatement stmt = con.prepareStatement(sql);
-		
-		con.close();
-		
 		return null;
 	}
 	
