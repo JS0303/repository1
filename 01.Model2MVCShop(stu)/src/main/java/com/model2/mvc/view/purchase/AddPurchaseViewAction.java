@@ -4,44 +4,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model2.mvc.framework.Action;
-import com.model2.mvc.service.purchase.PurchaseService;
-import com.model2.mvc.service.purchase.impl.PurchaseServiceImpl;
-import com.model2.mvc.service.purchase.vo.PurchaseVO;
+import com.model2.mvc.service.product.ProductService;
+import com.model2.mvc.service.product.impl.ProductServiceImpl;
+import com.model2.mvc.service.product.vo.ProductVO;
 
+public class AddPurchaseViewAction extends Action {
 
-public class AddPurchaseViewAction extends Action{
+	/// Constructor
+	public AddPurchaseViewAction() {
+		System.out.println("AddPurchaseViewAction Default Constructor..");
+	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		PurchaseVO purchaseVO = new PurchaseVO();
-		
-		//purchaseVO.setBuyer(request.getParameter("buyer"));
-		//purchaseVO.setDivyAddr(request.getParameter("divyAddr"));
-		purchaseVO.setDivyDate(request.getParameter("divyDate"));
-		purchaseVO.setDivyRequest(request.getParameter("divyRequest"));
-		//purchaseVO.setOrderDate(request.getParameter("orderDate"));
-		purchaseVO.setPaymentOption(request.getParameter("paymentOption"));
-		//purchaseVO.setPurchaseProd(request.getParameter("purchaseProd"));
-		purchaseVO.setReceiverName(request.getParameter("receiverName"));
-		purchaseVO.setReceiverPhone(request.getParameter("receiverPhone"));
-		purchaseVO.setTranCode(request.getParameter("tranCode"));
-		purchaseVO.setTranNo(Integer.parseInt(request.getParameter("tranNo")));
-		
-		System.out.println(":: AddPurchaseViewAction¿« purchaseVO ::"+purchaseVO);
-		
-		System.out.println(":: AddPurchaseViewAction¿« tranNo ::"+request.getParameter("tranNo"));
-		
-		int tranNo=Integer.parseInt(request.getParameter("tranNo"));
-				
-		PurchaseService service = new PurchaseServiceImpl();
-		//PurchaseVO purchaseVO=service.getPurchase2(tranNo);
-		
-		request.setAttribute("purchaseVO", purchaseVO);
-		
-		return "forward:/purchase/updatePurchase.jsp";
-	}
 
-	
+		int prodNo = Integer.parseInt(request.getParameter("prod_no"));
+
+		ProductService productService = new ProductServiceImpl();
+		ProductVO productVO = productService.getProduct(prodNo);
+
+		request.setAttribute("productVO", productVO);
+
+		return "forward:/purchase/addPurchaseView.jsp";
+	}
 
 }
