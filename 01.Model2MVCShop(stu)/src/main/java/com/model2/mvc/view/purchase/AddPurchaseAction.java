@@ -26,9 +26,9 @@ public class AddPurchaseAction extends Action{
 		PurchaseVO purchaseVO = new PurchaseVO();
 		
 		purchaseVO.setBuyer(userVO);
-		purchaseVO.setDivyAddr(request.getParameter("divyAddr"));
-		purchaseVO.setDivyDate(request.getParameter("divyDate"));
-		purchaseVO.setDivyRequest(request.getParameter("divyRequest"));
+		purchaseVO.setDivyAddr(request.getParameter("receiverAddr"));
+		purchaseVO.setDivyDate(request.getParameter("receiverDate"));
+		purchaseVO.setDivyRequest(request.getParameter("receiverRequest"));
 		purchaseVO.setPaymentOption(request.getParameter("paymentOption"));
 		purchaseVO.setPurchaseProd(productVO);
 		purchaseVO.setReceiverName(request.getParameter("receiverName"));
@@ -45,7 +45,7 @@ public class AddPurchaseAction extends Action{
 		
 		request.setAttribute("purchaseVO", purchaseVO);
 		
-		return "forward:/purchase/updatePurchase.jsp";
+		return "forward:/purchase/addPurchase.jsp";
 	}
 
 }

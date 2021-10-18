@@ -23,7 +23,7 @@ public class AddProductAction extends Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		if (FileUpload.isMultipartContent(request)) {
-     		String temDir = "C:\\Users\\wlstj\\git\\repository\\01.Model2MVCShop(stu)\\src\\main\\webapp\\images\\uploadFiles";
+     		String temDir = "C:\\Users\\user\\git\\repository\\01.Model2MVCShop(stu)\\src\\main\\webapp\\images\\uploadFiles";
 //			String temDir = ".";     		
 //			String temDir = "/uploadFiles/";
 

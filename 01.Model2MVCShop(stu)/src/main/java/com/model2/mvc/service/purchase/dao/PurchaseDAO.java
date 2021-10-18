@@ -24,7 +24,6 @@ public class PurchaseDAO {
 		String sql = "insert into TRANSACTION values (seq_transaction_tran_no.nextval,?,?,?,?,?,?,?,?,sysdate,?)";
 
 		PreparedStatement stmt = con.prepareStatement(sql);
-		System.out.println(":: PurchaseDAO의 준비된 insertPurchase sql ::" + sql);
 		stmt.setObject(1, purchaseVO.getPurchaseProd().getProdNo());
 		stmt.setObject(2, purchaseVO.getBuyer().getUserId());
 		stmt.setString(3, purchaseVO.getPaymentOption());
@@ -34,6 +33,7 @@ public class PurchaseDAO {
 		stmt.setString(7, purchaseVO.getDivyRequest());
 		stmt.setString(8, purchaseVO.getTranCode());
 		stmt.setString(9, null);
+		System.out.println(":: PurchaseDAO의 준비된 insertPurchase sql ::" + sql);
 
 		System.out.println(purchaseVO.getDivyDate() + " :: PurchaseDAO의 insertPurchase에서 찍은 DivyDate");
 
