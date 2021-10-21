@@ -5,8 +5,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.model2.mvc.common.util.DBUtil;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import com.model2.mvc.common.util.DBUtil;
+import com.model2.mvc.service.product.vo.ProductVO;
 import com.model2.mvc.service.purchase.vo.PurchaseVO;
 import com.model2.mvc.service.user.vo.UserVO;
 
@@ -18,13 +21,14 @@ public class PurchaseDAO {
 
 	/// Method
 	public void insertPurchase(PurchaseVO purchaseVO) throws Exception {
-
+		
 		Connection con = DBUtil.getConnection();
-
+	
 		String sql = "insert into TRANSACTION values (seq_transaction_tran_no.nextval,?,?,?,?,?,?,?,?,sysdate,?)";
 
-		PreparedStatement stmt = con.prepareStatement(sql);
-		stmt.setObject(1, purchaseVO.getPurchaseProd().getProdNo());
+		PreparedStatement stmt = con.prepareStatement(sql);		
+
+		stmt.setInt(1, purchaseVO.getPurchaseProd().getProdNo());
 		stmt.setObject(2, purchaseVO.getBuyer().getUserId());
 		stmt.setString(3, purchaseVO.getPaymentOption());
 		stmt.setString(4, purchaseVO.getReceiverName());
@@ -35,7 +39,7 @@ public class PurchaseDAO {
 		stmt.setString(9, null);
 		System.out.println(":: PurchaseDAO의 준비된 insertPurchase sql ::" + sql);
 
-		System.out.println(purchaseVO.getDivyDate() + " :: PurchaseDAO의 insertPurchase에서 찍은 DivyDate");
+		System.out.println(purchaseVO.getPurchaseProd() + " :: PurchaseDAO의 insertPurchase에서 찍은 PurchaseProd");
 
 		if (!"".equals(purchaseVO.getDivyDate())) {
 			stmt.setDate(9, Date.valueOf(purchaseVO.getDivyDate()));
@@ -73,7 +77,7 @@ public class PurchaseDAO {
 			purchaseVO.setReceiverPhone(rs.getString("RECEIVER_PHONE"));
 			purchaseVO.setDivyAddr(rs.getString("DEMAILADDR"));
 			purchaseVO.setTranCode(rs.getString("TRAN_STATUS_CODE"));
-			purchaseVO.setOrderDate(rs.getDate("ORDER_DATA"));
+			purchaseVO.setOrderDate(rs.getDate("ORDER_DATE"));
 			purchaseVO.setDivyDate(rs.getString("DLVY_DATE"));
 		}
 

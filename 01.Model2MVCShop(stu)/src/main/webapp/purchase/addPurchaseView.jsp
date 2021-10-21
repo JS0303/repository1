@@ -7,11 +7,13 @@
 <%@ page import="com.model2.mvc.service.product.vo.ProductVO"%>
 <%@ page import="com.model2.mvc.service.purchase.vo.PurchaseVO"%>
 <%@ page import="com.model2.mvc.service.purchase.dao.*"%>
+<%@ page import="com.model2.mvc.service.product.dao.*"%>
+<%@ page import="com.model2.mvc.service.user.dao.*"%>
 
 <%
-UserVO userVO = (UserVO) request.getAttribute("userVO");
-ProductVO productVO = (ProductVO) request.getAttribute("productVO");
-PurchaseVO purchaseVO = (PurchaseVO) request.getAttribute("purchaseVO");
+UserVO userVO = (UserVO)request.getAttribute("userVO");
+ProductVO productVO = (ProductVO)request.getAttribute("productVO");
+PurchaseVO purchaseVO = (PurchaseVO)request.getAttribute("purchaseVO");
 System.out.println("addPurchaseView.jsp에서 불러온 purchaseVO : " + request.getAttribute("purchaseVO"));
 %>
 
@@ -136,7 +138,7 @@ System.out.println("addPurchaseView.jsp에서 불러온 purchaseVO : " + request.getA
 				<td bgcolor="D6D6D6" width="1"></td>
 				<td class="ct_write01"><input type="text" name="buyer"
 					class="ct_input_g" style="width: 100px; height: 19px"
-					maxLength="20"></td>
+					maxLength="20" ></td>
 
 			</tr>
 			<tr>
