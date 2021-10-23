@@ -14,38 +14,50 @@ import com.model2.mvc.service.purchase.vo.PurchaseVO;
 import com.model2.mvc.service.user.vo.UserVO;
 
 public class AddPurchaseAction extends Action{
+	
+	///Constructor
+	public AddPurchaseAction() {
+		
+	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-
-		HttpSession session = request.getSession();
-		UserVO userVO = (UserVO)session.getAttribute("user");
-		ProductVO productVO=(ProductVO)session.getAttribute("productVO");
 		
+		HttpSession session = request.getSession();
+		UserVO userVO = new UserVO();
+		userVO = (UserVO) session.getAttribute("user");
+		int prodNo = Integer.parseInt(request.getParameter("prodNo"));
+		
+		ProductVO productVO = new ProductVO();
+		productVO.setProdNo(prodNo);
+		
+		
+		System.out.println(":: ::AddPurchaseAtion prodNo"+prodNo);
 		PurchaseVO purchaseVO = new PurchaseVO();
+		System.out.println("::AddPurchaseAtion userVO ::"+userVO);
+		System.out.println("::AddPurchaseAtion productVO ::"+productVO);
 		
 		purchaseVO.setBuyer(userVO);
-		purchaseVO.setDivyAddr(request.getParameter("divyAddr"));
-		purchaseVO.setDivyDate(request.getParameter("divyDate"));
-		purchaseVO.setDivyRequest(request.getParameter("divyRequest"));
+		purchaseVO.setDivyAddr(request.getParameter("receiverAddr"));
+		purchaseVO.setDivyDate(request.getParameter("receiverDate"));
+		purchaseVO.setDivyRequest(request.getParameter("receiverRequest"));
 		purchaseVO.setPaymentOption(request.getParameter("paymentOption"));
 		purchaseVO.setPurchaseProd(productVO);
 		purchaseVO.setReceiverName(request.getParameter("receiverName"));
 		purchaseVO.setReceiverPhone(request.getParameter("receiverPhone"));
 		purchaseVO.setTranCode("001");
-		purchaseVO.setTranNo(Integer.parseInt(request.getParameter("prodNo")));
+		//purchaseVO.setTranNo(Integer.parseInt(request.getParameter("tranNo")));
 		
-		System.out.println(":: AddPurchaseViewAction의 purchaseVO ::"+purchaseVO);
+		System.out.println(":: AddPurchaseAction의 purchaseVO ::"+purchaseVO);
 		
-		System.out.println(":: AddPurchaseViewAction의 tranNo ::"+request.getParameter("tranNo"));
+		//System.out.println(":: AddPurchaseAction의 tranNo ::"+request.getParameter("tranNo"));
 		
 		PurchaseService purchaseService = new PurchaseServiceImpl();
 		purchaseService.addPurchase(purchaseVO);
 		
 		request.setAttribute("purchaseVO", purchaseVO);
 		
-		return "forward:/purchase/updatePurchase.jsp";
+		return "forward:/purchase/addPurchase.jsp";
 	}
 
 }

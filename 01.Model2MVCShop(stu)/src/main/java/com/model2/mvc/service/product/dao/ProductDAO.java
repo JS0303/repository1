@@ -21,20 +21,21 @@ public class ProductDAO {
 		
 		Connection con = DBUtil.getConnection();
 		
-		String str= productVO.getManuDate();
+//		String str= productVO.getManuDate();
 		
 		//제조일자를 "-"를 제외하고 split
-		String[] md=str.split("-");
-		String y = md[0];
-		String m = md[1];
-		String d = md[2];
+//		String[] md=str.split("-");
+//		String y = md[0];
+//		String m = md[1];
+//		String d = md[2];
 
 		String sql = "insert into PRODUCT values (seq_product_prod_no.nextval,?,?,?,?,?,sysdate)";
 		
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.setString(1, productVO.getProdName());
 		stmt.setString(2, productVO.getProdDetail());
-		stmt.setString(3, y+m+d);
+//		stmt.setString(3, y+m+d);
+		stmt.setString(3, productVO.getManuDate());
 		stmt.setInt(4, productVO.getPrice());
 		stmt.setString(5, productVO.getFileName());
 		stmt.executeUpdate();

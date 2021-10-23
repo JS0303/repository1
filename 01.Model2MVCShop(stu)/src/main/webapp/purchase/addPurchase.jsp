@@ -4,11 +4,21 @@
 <%@ page import="com.model2.mvc.service.purchase.vo.PurchaseVO"%>
 <%@ page import="com.model2.mvc.common.*" %>
 <%@ page import="com.model2.mvc.service.purchase.vo.PurchaseVO" %>
+<%@ page import="com.model2.mvc.service.user.vo.UserVO" %>
+<%@ page import="com.model2.mvc.service.product.vo.ProductVO" %>
 <%@ page import="com.model2.mvc.service.purchase.dao.*" %>
 
 <%
+	UserVO userVO = (UserVO)request.getAttribute("userVO");
+		System.out.println(getClass().getName()+"addPurchase.jsp에서 불러온 userVO : "+userVO);
+		
+	ProductVO productVO = (ProductVO)request.getAttribute("productVO");
+		System.out.println(getClass().getName()+"addPurchase.jsp에서 불러온 productVO : "+productVO);
+		
 	PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
-		System.out.println("addPurchase.jsp에서 불러온 purchaseVO : "+purchaseVO);
+		System.out.println(getClass().getName()+"addPurchase.jsp에서 불러온 purchaseVO : "+purchaseVO);
+		
+	String payment = "신용구매";
 %>
 
 
@@ -28,12 +38,12 @@
 <table border=1>
 	<tr>
 		<td>물품번호</td>
-		<td><%=purchaseVO.getPurchaseProd() %></td>
+		<td><%=purchaseVO.getPurchaseProd().getProdNo() %></td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>구매자아이디</td>
-		<td><%=purchaseVO.getBuyer() %></td>
+		<td><%=purchaseVO.getBuyer().getUserId() %></td>
 		<td></td>
 	</tr>
 	<tr>

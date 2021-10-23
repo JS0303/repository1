@@ -9,6 +9,8 @@
 	PurchaseVO purchaseVO = (PurchaseVO)request.getAttribute("purchaseVO");
 
 	System.out.println("updatePurchaseView.jsp에서 불러온 purchaseVO : "+purchaseVO);
+	
+	System.out.println("updatePurchaseView.jsp :: 배송날짜 확인 :: "+purchaseVO.getDivyDate());
 %>
 
 
@@ -54,11 +56,8 @@
 	<tr>
 		<td width="104" class="ct_write">구매자아이디</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<input type="text" name="buyerId" class="ct_input_g" 
-									style="width: 100px; height: 19px" maxLength="20">
-		</td>
-		<input type="hidden" name="buyerId" value="<%=purchaseVO.getBuyer()%>">
+		<td class="ct_write01"><%= purchaseVO.getBuyer().getUserId() %></td>
+			<input type="hidden" name="buyerId" value="<%= purchaseVO.getBuyer().getUserId() %>" />
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -69,8 +68,8 @@
 		<td class="ct_write01">
 			<select 	name="paymentOption" 	class="ct_input_g" style="width: 100px; height: 19px" 
 							maxLength="20">
-				<option value="1" selected="selected">현금구매</option>
-				<option value="2">신용구매</option>
+				<option value="1" selected=<%="1".equals(purchaseVO.getPaymentOption()) ? "selected" : "" %>"selected">현금구매</option>
+				<option value="2" selected=<%="2".equals(purchaseVO.getPaymentOption()) ? "selected" : "" %>"selected">신용구매</option>
 			</select>
 		</td>
 	</tr>

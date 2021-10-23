@@ -19,7 +19,7 @@
 
 <body bgcolor="#ffffff" text="#000000">
 
-<form name="detailForm"  method="post" >
+<form name="detailForm"  method="post" enctype="multipart/form-data">
 
 <table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
 	<tr>
@@ -98,7 +98,10 @@
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<!-- 테이블 시작 -->
-					<%=productVO.getFileName() %>
+					<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="26">
+						<img src="/images/uploadFiles/<%=productVO.getFileName() %>"/>
 					</td>
 				</tr>
 			</table>
@@ -143,4 +146,3 @@
 
 </body>
 </html>
-
