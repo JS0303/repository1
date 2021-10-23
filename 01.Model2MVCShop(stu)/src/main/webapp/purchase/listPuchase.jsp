@@ -1,49 +1,42 @@
-<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ page contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 
 <%@ page import="java.util.List"  %>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.HashMap"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.HashMap"%>
 
 <%@ page import="com.model2.mvc.service.purchase.vo.PurchaseVO" %>
 <%@ page import="com.model2.mvc.service.product.vo.ProductVO" %>
 <%@ page import="com.model2.mvc.service.user.vo.UserVO" %>
-<%@ page import="com.model2.mvc.common.*" %>
+<%@ page import="com.model2.mvc.common.SearchVO" %>
 
 <%
 	HashMap<String,Object> map=(HashMap<String,Object>)request.getAttribute("map");
-		
-		SearchVO searchVO=(SearchVO)request.getAttribute("searchVO");
 	
-		int total=0;
-		
-		ArrayList<PurchaseVO> list=null;
-			if(map != null){
-		
-				total=((Integer)map.get("count")).intValue();
-		
-		list=(ArrayList<PurchaseVO>)map.get("list");
+	SearchVO searchVO=(SearchVO)request.getAttribute("searchVO");
+	
+	UserVO userVO = (UserVO)session.getAttribute("user");
+	
+	int total=0;
+	
+	ArrayList<PurchaseVO> list=null;
+		if(map != null){
+	
+			total=((Integer)map.get("count")).intValue();
+	
+	list=(ArrayList<PurchaseVO>)map.get("list");
 	}
 	
 	int currentPage=searchVO.getPage();
 	
-		int totalPage=0;
-			
-			if(total > 0) {
-				totalPage= total / searchVO.getPageUnit() ;
-			if(total%searchVO.getPageUnit() >0)
-				totalPage += 1;
+	int totalPage=0;
+		
+		if(total > 0) {
+			totalPage= total / searchVO.getPageUnit() ;
+		if(total%searchVO.getPageUnit() >0)
+			totalPage += 1;
 	}
 			
-			PurchaseVO purchaseVO = (PurchaseVO)request.getAttribute("purchaseVO");
-			ProductVO productVO = (ProductVO)request.getAttribute("productVO");
-			UserVO userVO = (UserVO)request.getAttribute("userVO");
-			
-			System.out.println("listPurchase.jsp의 request.getParameter : "+request.getParameter("menu"));
-			
 %>
-
-
-
 
 
 <html>
@@ -53,7 +46,7 @@
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
 <script type="text/javascript">
-	function fncGetUserList() {
+	function fncGetPurchaseList() {
 		document.detailForm.submit();
 	}
 </script>
@@ -103,7 +96,7 @@
 	<% 	
 		int no=list.size();
 		for(int i=0; i<list.size(); i++) {
-			PurchaseVO purchasevo = (PurchaseVO)list.get(i);
+			PurchaseVO purchaseVO = (PurchaseVO)list.get(i);
 	%>
 	
 	
@@ -120,19 +113,24 @@
 		<td></td>
 		<td align="left"><%=userVO.getPhone() %></td>
 		<td></td>
-		<td align="left">현재
-				
-					구매완료
-				상태 입니다.</td>
+		<% if("001".equals(purchaseVO.getTranCode())) { %>
+			<td align="left">현재 구매완료상태 입니다.</td>
+		<% } else if("002".equals(purchaseVO.getTranCode())) { %>
+			<td align="left">현재 배송중 입니다.</td>
+		<% } else { %>
+			<td align="left">배송이 완료되었습니다.</td>
+			<%} %>
 		<td></td>
-		<td align="left">
+		<% if("002".equals(purchaseVO.getTranCode())){ %>
+			<td align="left"><a href="/updateTranCodeByProd.do?prodNo=<%=purchaseVO.getPurchaseProd().getProdNo() %>&tranCode=003">배송완료</a></td>
+		<% } %>	
+		<td align="left"></td>
 			
-		</td>
 	</tr>
 	<tr>
 		<td colspan="11" bgcolor="D6D7D6" height="1"></td>
 	</tr>
-	
+	<%} %>
 </table>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 10px;">

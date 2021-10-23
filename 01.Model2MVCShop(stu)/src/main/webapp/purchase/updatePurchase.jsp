@@ -9,6 +9,8 @@
 	PurchaseVO purchaseVO = (PurchaseVO)request.getAttribute("purchaseVO");
 
 	System.out.println("updatePurchase.jsp에서 불러온 purchaseVO : "+purchaseVO);
+	
+	String payment = "신용구매";
 %>
 
 
@@ -55,7 +57,7 @@
 				<tr>
 					<td width="105">
 					<input 	type="text" name="PurchaseProd" class="ct_input_g" 
-										style="width: 100px; height: 19px" maxLength="20" value="<%=purchaseVO.getPurchaseProd()%>"></td>
+										style="width: 100px; height: 19px" maxLength="20" value="<%=purchaseVO.getPurchaseProd().getProdNo()%>"></td>
 					</td>
 					<td></td>
 				</tr>
@@ -71,7 +73,7 @@
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" name="buyerId" value="<%=purchaseVO.getBuyer() %>" class="ct_input_g" 
+			<input type="text" name="buyerId" value="<%=purchaseVO.getBuyer().getUserId() %>" class="ct_input_g" 
 						style="width: 100px; height: 19px" maxLength="10"	minLength="6">
 		</td>
 	</tr>
@@ -83,8 +85,11 @@
 		<td width="104" class="ct_write">구매방법</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="paymentOption" class="ct_input_g" 
-										style="width: 100px; height: 19px" maxLength="20" value="<%=purchaseVO.getPaymentOption() %>"></td>
+			<% if("1".equals(purchaseVO.getPaymentOption())) {
+					payment="현금구매";
+					}
+			%>
+			<%= payment %>
 		</td>
 	</tr>
 	<tr>
@@ -93,9 +98,7 @@
 	<tr>
 		<td width="104" class="ct_write">구매자이름</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<input 	type="text" name="receiverName" class="ct_input_g" 
-										style="width: 100px; height: 19px" maxLength="20" value="<%=purchaseVO.getReceiverName() %>"></td>
+		<td class="ct_write01"><%=purchaseVO.getReceiverName() %></td>
 		</td>
 	</tr>
 	<tr>
@@ -105,8 +108,7 @@
 		<td width="104" class="ct_write">구매자연락처</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="receiverPhone" class="ct_input_g" 
-										style="width: 100px; height: 19px" maxLength="20" value="<%=purchaseVO.getReceiverPhone() %>"></td>
+			<%=purchaseVO.getReceiverPhone() %></td>
 		
 		</td>
 	</tr>
@@ -117,8 +119,7 @@
 		<td width="104" class="ct_write">구매자주소</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="divyAddr" class="ct_input_g" 
-										style="width: 100px; height: 19px" maxLength="20" value="<%=purchaseVO.getDivyAddr() %>"></td>
+			<%=purchaseVO.getDivyAddr() %></td>
 		
 		</td>
 	</tr>
@@ -129,8 +130,7 @@
 		<td width="104" class="ct_write">구매요청사항</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="divyRequest" class="ct_input_g" 
-										style="width: 100px; height: 19px" maxLength="20" value="<%=purchaseVO.getDivyRequest() %>"></td>
+			<%=purchaseVO.getDivyRequest() %></td>
 		
 		</td>
 	</tr>

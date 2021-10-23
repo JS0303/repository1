@@ -11,10 +11,9 @@
 <%@ page import="com.model2.mvc.service.user.dao.*"%>
 
 <%
-UserVO userVO = (UserVO)request.getAttribute("userVO");
+UserVO userVO = (UserVO)session.getAttribute("user");
 ProductVO productVO = (ProductVO)request.getAttribute("productVO");
-PurchaseVO purchaseVO = (PurchaseVO)request.getAttribute("purchaseVO");
-System.out.println("addPurchaseView.jsp에서 불러온 purchaseVO : " + request.getAttribute("purchaseVO"));
+
 %>
 
 <html>
@@ -136,10 +135,8 @@ System.out.println("addPurchaseView.jsp에서 불러온 purchaseVO : " + request.getA
 					align="absmiddle" />
 				</td>
 				<td bgcolor="D6D6D6" width="1"></td>
-				<td class="ct_write01"><input type="text" name="buyer"
-					class="ct_input_g" style="width: 100px; height: 19px"
-					maxLength="20" ></td>
-
+				<td class="ct_write01"><%= userVO.getUserId() %></td>
+				<input type="hidden" name="buyerId" value = "<%=userVO.getUserId() %>" />
 			</tr>
 			<tr>
 				<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -160,9 +157,9 @@ System.out.println("addPurchaseView.jsp에서 불러온 purchaseVO : " + request.getA
 			<tr>
 				<td width="104" class="ct_write">구매자이름</td>
 				<td bgcolor="D6D6D6" width="1"></td>
-				<td class="ct_write01"><input type="text" name="receiverName"
-					class="ct_input_g" style="width: 100px; height: 19px"
-					maxLength="20" /></td>
+				<td class="ct_write01">
+				<input type="text" name="receiverName" class="ct_input_g" 
+							style="width: 100px; height: 19px"	maxLength="20" value="<%=userVO.getUserName()%>"/></td>
 			</tr>
 			<tr>
 				<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -172,7 +169,7 @@ System.out.println("addPurchaseView.jsp에서 불러온 purchaseVO : " + request.getA
 				<td bgcolor="D6D6D6" width="1"></td>
 				<td class="ct_write01"><input type="text" name="receiverPhone"
 					class="ct_input_g" style="width: 100px; height: 19px"
-					maxLength="20" /></td>
+					maxLength="20" value="<%=userVO.getPhone() %>" /></td>
 			</tr>
 			<tr>
 				<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -182,7 +179,7 @@ System.out.println("addPurchaseView.jsp에서 불러온 purchaseVO : " + request.getA
 				<td bgcolor="D6D6D6" width="1"></td>
 				<td class="ct_write01"><input type="text" name="receiverAddr"
 					class="ct_input_g" style="width: 100px; height: 19px"
-					maxLength="20" /></td>
+					maxLength="20" value="<%=userVO.getAddr()%>" /></td>
 			</tr>
 			<tr>
 				<td height="1" colspan="3" bgcolor="D6D6D6"></td>

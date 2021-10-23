@@ -10,9 +10,15 @@
 
 <%
 	UserVO userVO = (UserVO)request.getAttribute("userVO");
+		System.out.println(getClass().getName()+"addPurchase.jsp에서 불러온 userVO : "+userVO);
+		
 	ProductVO productVO = (ProductVO)request.getAttribute("productVO");
+		System.out.println(getClass().getName()+"addPurchase.jsp에서 불러온 productVO : "+productVO);
+		
 	PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
-		System.out.println("addPurchase.jsp에서 불러온 purchaseVO : "+purchaseVO);
+		System.out.println(getClass().getName()+"addPurchase.jsp에서 불러온 purchaseVO : "+purchaseVO);
+		
+	String payment = "신용구매";
 %>
 
 
