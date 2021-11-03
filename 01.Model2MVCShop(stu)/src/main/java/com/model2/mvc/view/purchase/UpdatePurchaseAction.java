@@ -24,9 +24,9 @@ public class UpdatePurchaseAction extends Action {
 		purchaseVO.setPaymentOption(request.getParameter("paymentOption"));
 		purchaseVO.setReceiverName(request.getParameter("receiverName"));
 		purchaseVO.setReceiverPhone(request.getParameter("receiverPhone"));
-		purchaseVO.setDivyAddr(request.getParameter("receiverAddr"));
-		purchaseVO.setDivyRequest(request.getParameter("receiverRequest"));
-		purchaseVO.setDivyDate(request.getParameter("divyDate"));
+		purchaseVO.setDlvyAddr(request.getParameter("receiverAddr"));
+		purchaseVO.setDlvyRequest(request.getParameter("receiverRequest"));
+		purchaseVO.setDlvyDate(request.getParameter("dlvyDate"));
 		
 		PurchaseService purchaseService = new PurchaseServiceImpl();
 		purchaseService.updatePurcahse(purchaseVO);

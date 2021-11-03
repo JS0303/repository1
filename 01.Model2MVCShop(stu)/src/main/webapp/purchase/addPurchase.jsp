@@ -67,17 +67,17 @@
 	</tr>
 	<tr>
 		<td>구매자주소</td>
-		<td><%=purchaseVO.getDivyAddr() %></td>
+		<td><%=purchaseVO.getDlvyAddr() %></td>
 		<td></td>
 	</tr>
 		<tr>
 		<td>구매요청사항</td>
-		<td><%=purchaseVO.getDivyRequest() %></td>
+		<td><%=purchaseVO.getDlvyRequest() %></td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>배송희망일자</td>
-		<td><%=purchaseVO.getDivyDate() %></td>
+		<td><%=purchaseVO.getDlvyDate() %></td>
 		<td></td>
 	</tr>
 </table>

@@ -60,15 +60,15 @@ public class PurchaseDAO {
 			purchaseVO.setPaymentOption(rs.getString(4));
 			purchaseVO.setReceiverName(rs.getString(5));
 			purchaseVO.setReceiverPhone(rs.getString(6));
-			purchaseVO.setDivyAddr(rs.getString(7));
-			purchaseVO.setDivyRequest(rs.getString(8));
+			purchaseVO.setDlvyAddr(rs.getString(7));
+			purchaseVO.setDlvyRequest(rs.getString(8));
 			purchaseVO.setTranCode(rs.getString(9));
 			purchaseVO.setOrderDate(rs.getDate(10));
 
 			if (rs.getString(11) != null) {
-				purchaseVO.setDivyDate(rs.getString(11));
+				purchaseVO.setDlvyDate(rs.getString(11));
 			} else {
-				purchaseVO.setDivyDate("");
+				purchaseVO.setDlvyDate("");
 			}
 
 			purchaseVO.setPurchaseProd(productVO);
@@ -94,6 +94,7 @@ public class PurchaseDAO {
 				ResultSet.CONCUR_UPDATABLE);
 
 		stmt.setString(1, buyerId);
+		System.out.println("buyerId :: "+buyerId);
 
 		ResultSet rs = stmt.executeQuery();
 		rs.last();
@@ -120,11 +121,11 @@ public class PurchaseDAO {
 				purchaseVO.setPaymentOption(rs.getString(4));
 				purchaseVO.setReceiverName(rs.getString(5));
 				purchaseVO.setReceiverPhone(rs.getString(6));
-				purchaseVO.setDivyAddr(rs.getString(7));
-				purchaseVO.setDivyRequest(rs.getString(8));
+				purchaseVO.setDlvyAddr(rs.getString(7));
+				purchaseVO.setDlvyRequest(rs.getString(8));
 				purchaseVO.setTranCode(rs.getString(9));
 				purchaseVO.setOrderDate(rs.getDate(10));
-				purchaseVO.setDivyDate(rs.getString(11));
+				purchaseVO.setDlvyDate(rs.getString(11));
 
 				purchaseVO.setPurchaseProd(productVO);
 				purchaseVO.setBuyer(userVO);
@@ -163,16 +164,16 @@ public class PurchaseDAO {
 		stmt.setString(3, purchaseVO.getPaymentOption());
 		stmt.setString(4, purchaseVO.getReceiverName());
 		stmt.setString(5, purchaseVO.getReceiverPhone());
-		stmt.setString(6, purchaseVO.getDivyAddr());
-		stmt.setString(7, purchaseVO.getDivyRequest());
+		stmt.setString(6, purchaseVO.getDlvyAddr());
+		stmt.setString(7, purchaseVO.getDlvyRequest());
 		stmt.setString(8, purchaseVO.getTranCode());
 		stmt.setString(9, null);
 		System.out.println(":: PurchaseDAO의 준비된 insertPurchase sql ::" + sql);
 
 		System.out.println(purchaseVO.getPurchaseProd() + " :: PurchaseDAO의 insertPurchase에서 찍은 PurchaseProd");
 
-		if (!"".equals(purchaseVO.getDivyDate())) {
-			stmt.setDate(9, Date.valueOf(purchaseVO.getDivyDate()));
+		if (!"".equals(purchaseVO.getDlvyDate())) {
+			stmt.setDate(9, Date.valueOf(purchaseVO.getDlvyDate()));
 		}
 
 		if (stmt.executeUpdate() == 1) {
@@ -191,7 +192,7 @@ public class PurchaseDAO {
 		Connection con = DBUtil.getConnection();
 
 		String sql = "update TRANSACTION " + "set PAYMENT_OPTION=?, RECEIVER_NAME=?, RECEIVER_PHONE=?, "
-				+ "DEMAILADDR=?, DIVY_REQUEST=?, DIVY_DATE=? " + "where TRAN_NO=?";
+				+ "DEMAILADDR=?, DLVY_REQUEST=?, DLVY_DATE=? " + "where TRAN_NO=?";
 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		System.out.println("updatePurchase의 sql :: "+sql);
@@ -199,9 +200,9 @@ public class PurchaseDAO {
 		stmt.setString(1, purchaseVO.getPaymentOption());
 		stmt.setString(2, purchaseVO.getReceiverName());
 		stmt.setString(3, purchaseVO.getReceiverPhone());
-		stmt.setString(4, purchaseVO.getDivyAddr());
-		stmt.setString(5, purchaseVO.getDivyRequest());
-		stmt.setString(6, purchaseVO.getDivyDate());
+		stmt.setString(4, purchaseVO.getDlvyAddr());
+		stmt.setString(5, purchaseVO.getDlvyRequest());
+		stmt.setString(6, purchaseVO.getDlvyDate());
 		stmt.setInt(7, purchaseVO.getTranNo());
 		
 		

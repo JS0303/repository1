@@ -12,6 +12,7 @@ public class ProductVO {
 	private String prodName;
 	private int prodNo;
 	private Date regDate;
+	private String prodTranCode;
 	
 	
 	public ProductVO(){
@@ -100,7 +101,17 @@ public class ProductVO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-
+	
+	
+	public String getProdTranCode() {
+		return prodTranCode;
+	}
+	
+	
+	
+	public void setProdTranCode(String prodTranCode) {
+		this.prodTranCode = prodTranCode;
+	}
 
 
 	@Override
@@ -109,4 +120,7 @@ public class ProductVO {
 		return "ProductVO : [fileName] "+fileName+" [manuDate] "+manuDate+" [price] "+price+" [prodDetail] "+ prodDetail
 			+" [prodName] "+prodName+" [prodNo] "+prodNo+" [regDate] "+regDate;
 	}
+
+
+
 }
