@@ -76,17 +76,17 @@ public class ProductDAO {
 		
 		Connection con = DBUtil.getConnection();
 		
-		String sql = "select * from PRODUCT ";
+		String sql = "select p.prod_no, p.prod_name, p.prod_detail, p.manufacture_day, p.price, p.image_file, p.reg_date, t.TRAN_STATUS_CODE from product p, transaction t where p.prod_no=t.prod_no(+) ";
 		if (searchVO.getSearchCondition() != null) {
 			if (searchVO.getSearchCondition().equals("0")) {
-				sql += " where PROD_NO='" + searchVO.getSearchKeyword()
+				sql += " and p.PROD_NO='" + searchVO.getSearchKeyword()
 						+ "'";
 			} else if (searchVO.getSearchCondition().equals("1")) {
-				sql += " where PROD_NAME='" + searchVO.getSearchKeyword()
+				sql += " and p.PROD_NAME='" + searchVO.getSearchKeyword()
 						+ "'";
 			}
 		}
-		sql += " order by PROD_NO";
+		sql += " order by p.PROD_NO";
 
 		PreparedStatement stmt = 
 			con.prepareStatement(	sql,
@@ -116,6 +116,7 @@ public class ProductDAO {
 				vo.setPrice(rs.getInt("price"));
 				vo.setFileName(rs.getString("image_file"));
 				vo.setRegDate(rs.getDate("reg_date"));
+				vo.setProdTranCode(rs.getString("tran_status_code"));
 
 				list.add(vo);
 				if (!rs.next())

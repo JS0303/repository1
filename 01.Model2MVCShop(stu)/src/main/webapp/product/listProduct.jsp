@@ -223,7 +223,7 @@
 		<% if(productvo.getProdTranCode() == null){ %>
 		<td align="left">판매중</td>
 		<%}else{ %> <%
-			if("admin".equals(role)){
+			
 				if("001".equals(productvo.getProdTranCode())) {
 					if("manage".equals(request.getParameter("menu"))) {%>
 					<td align="left">구매완료<a href='updateTranCodeByProd.do?prodNo=<%=productvo.getProdNo() %>&tranCode=002'>배송하기</a></td>
@@ -237,7 +237,7 @@
 				<%}else if("004".equals(productvo.getProdTranCode())) { %>	
 					<td align="left">재고없음</td>
 				<%} %>
-		<%} %>
+		
 	</tr>
 	<tr>
 		<td colspan="11" bgcolor="D6D7D6" height="1"></td>

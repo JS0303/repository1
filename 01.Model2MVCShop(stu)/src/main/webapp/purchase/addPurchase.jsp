@@ -80,6 +80,11 @@
 		<td><%=purchaseVO.getDlvyDate() %></td>
 		<td></td>
 	</tr>
+	<tr>
+		<td>주문상태코드</td>
+		<td><%=purchaseVO.getTranCode() %></td>
+		<td></td>
+	</tr>
 </table>
 </form>
 

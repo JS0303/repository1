@@ -117,8 +117,10 @@
 			<td align="left">현재 구매완료상태 입니다.</td>
 		<% } else if("002".equals(purchaseVO.getTranCode())) { %>
 			<td align="left">현재 배송중 입니다.</td>
-		<% } else { %>
+		<% } else if("003".equals(purchaseVO.getTranCode())) { %>
 			<td align="left">배송이 완료되었습니다.</td>
+		<% } else { %>
+			<td align="left">코드 오류</td>
 			<%} %>
 		<td></td>
 		<% if("002".equals(purchaseVO.getTranCode())){ %>

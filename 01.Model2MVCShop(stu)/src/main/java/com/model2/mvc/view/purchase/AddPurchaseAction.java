@@ -30,6 +30,7 @@ public class AddPurchaseAction extends Action{
 		
 		ProductVO productVO = new ProductVO();
 		productVO.setProdNo(prodNo);
+		productVO.setProdTranCode("001");
 		
 		
 		System.out.println(":: ::AddPurchaseAtion prodNo"+prodNo);
@@ -45,7 +46,7 @@ public class AddPurchaseAction extends Action{
 		purchaseVO.setPurchaseProd(productVO);
 		purchaseVO.setReceiverName(request.getParameter("receiverName"));
 		purchaseVO.setReceiverPhone(request.getParameter("receiverPhone"));
-		productVO.setProdTranCode("001");
+		purchaseVO.setTranCode("001");
 		//purchaseVO.setTranNo(Integer.parseInt(request.getParameter("tranNo")));
 		
 		System.out.println(":: AddPurchaseAction¿« purchaseVO ::"+purchaseVO);

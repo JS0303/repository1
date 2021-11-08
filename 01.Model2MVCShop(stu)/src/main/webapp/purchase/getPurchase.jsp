@@ -126,7 +126,7 @@
 	<tr>
 		<td width="104" class="ct_write">πËº€»Ò∏¡¿œ</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=purchaseVO.getDlvyDate() %></td>
+		<td class="ct_write01"><%=purchaseVO.getDlvyDate()%></td>
 	</tr>
 
 	<tr>
