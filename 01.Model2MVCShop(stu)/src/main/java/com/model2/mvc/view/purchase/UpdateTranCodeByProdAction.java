@@ -31,7 +31,7 @@ public class UpdateTranCodeByProdAction extends Action{
 		purchaseVO.setPurchaseProd(productVO);
 		purchaseService.updateTranCode(purchaseVO);
 		
-		if("2".equals(tranCode)) {
+		if("002".equals(tranCode)) {
 			return "forward:/listProduct.do?menu=manage";
 		}
 		

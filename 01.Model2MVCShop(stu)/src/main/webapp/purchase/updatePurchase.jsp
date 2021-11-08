@@ -56,8 +56,7 @@
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="105">
-					<input 	type="text" name="PurchaseProd" class="ct_input_g" 
-										style="width: 100px; height: 19px" maxLength="20" value="<%=purchaseVO.getPurchaseProd().getProdNo()%>"></td>
+					<%=purchaseVO.getPurchaseProd().getProdNo()%>
 					</td>
 					<td></td>
 				</tr>
@@ -73,8 +72,7 @@
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" name="buyerId" value="<%=purchaseVO.getBuyer().getUserId() %>" class="ct_input_g" 
-						style="width: 100px; height: 19px" maxLength="10"	minLength="6">
+			<%=purchaseVO.getBuyer().getUserId() %>
 		</td>
 	</tr>
 	<tr>
@@ -119,7 +117,7 @@
 		<td width="104" class="ct_write">备概磊林家</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<%=purchaseVO.getDivyAddr() %></td>
+			<%=purchaseVO.getDlvyAddr() %></td>
 		
 		</td>
 	</tr>
@@ -130,7 +128,7 @@
 		<td width="104" class="ct_write">备概夸没荤亲</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<%=purchaseVO.getDivyRequest() %></td>
+			<%=purchaseVO.getDlvyRequest() %></td>
 		
 		</td>
 	</tr>
@@ -141,10 +139,7 @@
 		<td width="104" class="ct_write">硅价锐噶老</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" readonly="readonly" name="divyDate" value="<%=purchaseVO.getDivyDate() %>" 	
-						class="ct_input_g" style="width: 100px; height: 19px" maxLength="10" minLength="6">&nbsp;
-						<img 	src="../images/ct_icon_date.gif" width="15" height="15" 
-									onclick="show_calendar('document.detailForm.receiverDate', document.detailForm.receiverDate.value)" /></td>
+			<%=purchaseVO.getDlvyDate() %>
 		</td>
 	</tr>
 
@@ -156,11 +151,7 @@
 		<td width="104" class="ct_write">林巩老</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" readonly="readonly" name="orderDate" value="<%=purchaseVO.getOrderDate() %>" 	
-						class="ct_input_g" style="width: 100px; height: 19px" maxLength="10" minLength="6">&nbsp;
-						<img 	src="../images/ct_icon_date.gif" width="15" height="15" 
-									onclick="show_calendar('document.detailForm.orderDate', document.detailForm.orderDate.value)" /></td>
-		
+			<%=purchaseVO.getOrderDate() %>		
 		</td>
 	</tr>
 

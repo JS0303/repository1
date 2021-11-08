@@ -10,7 +10,7 @@
 		
 		String payment = "신용구매";
 		
-		System.out.println("_"+purchaseVO.getDivyDate()+"_");
+		System.out.println("_"+purchaseVO.getDlvyDate()+"_");
 %>	
 
 
@@ -110,7 +110,7 @@
 	<tr>
 		<td width="104" class="ct_write">구매자주소</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=purchaseVO.getDivyAddr() %></td>
+		<td class="ct_write01"><%=purchaseVO.getDlvyAddr() %></td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -118,7 +118,7 @@
 	<tr>
 		<td width="104" class="ct_write">구매요청사항</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=purchaseVO.getDivyRequest() %></td>
+		<td class="ct_write01"><%=purchaseVO.getDlvyRequest() %></td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -126,7 +126,7 @@
 	<tr>
 		<td width="104" class="ct_write">배송희망일</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=purchaseVO.getDivyDate() %></td>
+		<td class="ct_write01"><%=purchaseVO.getDlvyDate()%></td>
 	</tr>
 
 	<tr>

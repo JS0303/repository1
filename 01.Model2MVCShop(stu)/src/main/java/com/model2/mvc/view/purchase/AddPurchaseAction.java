@@ -30,6 +30,7 @@ public class AddPurchaseAction extends Action{
 		
 		ProductVO productVO = new ProductVO();
 		productVO.setProdNo(prodNo);
+		productVO.setProdTranCode("001");
 		
 		
 		System.out.println(":: ::AddPurchaseAtion prodNo"+prodNo);
@@ -38,9 +39,9 @@ public class AddPurchaseAction extends Action{
 		System.out.println("::AddPurchaseAtion productVO ::"+productVO);
 		
 		purchaseVO.setBuyer(userVO);
-		purchaseVO.setDivyAddr(request.getParameter("receiverAddr"));
-		purchaseVO.setDivyDate(request.getParameter("receiverDate"));
-		purchaseVO.setDivyRequest(request.getParameter("receiverRequest"));
+		purchaseVO.setDlvyAddr(request.getParameter("receiverAddr"));
+		purchaseVO.setDlvyDate(request.getParameter("receiverDate"));
+		purchaseVO.setDlvyRequest(request.getParameter("receiverRequest"));
 		purchaseVO.setPaymentOption(request.getParameter("paymentOption"));
 		purchaseVO.setPurchaseProd(productVO);
 		purchaseVO.setReceiverName(request.getParameter("receiverName"));

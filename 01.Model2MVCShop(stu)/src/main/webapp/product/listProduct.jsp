@@ -5,6 +5,7 @@
 <%@page import="java.util.HashMap"%>
 
 <%@ page import="com.model2.mvc.service.product.vo.ProductVO" %>
+<%@ page import="com.model2.mvc.service.user.vo.UserVO" %>
 <%@ page import="com.model2.mvc.common.*" %>
 
 
@@ -12,7 +13,23 @@
 	HashMap<String,Object> map=(HashMap<String,Object>)request.getAttribute("map");
 		
 		SearchVO searchVO=(SearchVO)request.getAttribute("searchVO");
-	
+		
+		UserVO userVO = (UserVO) session.getAttribute("user");
+		
+		String search = searchVO.getSearchKeyword();
+		
+		if(search != null)	{
+			session.setAttribute("search", search);
+			session.setAttribute("condition", searchVO.getSearchCondition());
+			
+			System.out.println("search :: "+ search + ", condition :: "+ searchVO.getSearchCondition());
+		}
+		
+		String role = null;
+		if(userVO != null){
+			role = userVO.getRole();
+		}
+		
 		int total=0;
 		
 		ArrayList<ProductVO> list=null;
@@ -20,7 +37,9 @@
 		
 				total=((Integer)map.get("count")).intValue();
 		
-		list=(ArrayList<ProductVO>)map.get("list");
+				list=(ArrayList<ProductVO>)map.get("list");
+				
+				System.out.println("total :: "+ total + ", list :: "+list);
 	}
 	
 	int currentPage=searchVO.getPage();
@@ -188,20 +207,43 @@
 		<td align="center"><%= i + 1 %></td>
 		<td></td>
 				<td align="left">
+				<%if (("user".equals(role) || role == null) && productvo.getProdTranCode()!= null){ %>
+						<%=productvo.getProdName()%>
+				<%}else{%>
 				<a href="/getProduct.do?prodNo=<%=productvo.getProdNo()%>&menu=<%= request.getParameter("menu")%>"><%=productvo.getProdName()%></a>
+				<%} %>
 				</td>
-		
+				
 		<td></td>
 		<td align="left"><%=productvo.getPrice() %></td>
 		<td></td>
 		<td align="left"><%=productvo.getRegDate() %></td>
 		<td></td>
-		<td align="left"></td>	
+		<% System.out.println("role :: "+role+", tranCode :: "+productvo.getProdTranCode()+", menu :: "+request.getParameter("menu")); %>
+		<% if(productvo.getProdTranCode() == null){ %>
+		<td align="left">판매중</td>
+		<%}else{ %> <%
+			
+				if("001".equals(productvo.getProdTranCode())) {
+					if("manage".equals(request.getParameter("menu"))) {%>
+					<td align="left">구매완료<a href='updateTranCodeByProd.do?prodNo=<%=productvo.getProdNo() %>&tranCode=002'>배송하기</a></td>
+				<%}else { %>
+					<td align="left">구매완료</td>
+					<%} %>
+				<%}else if("002".equals(productvo.getProdTranCode())) { %>	
+					<td align="left">배송중</td>
+				<%}else if("003".equals(productvo.getProdTranCode())) { %>	
+					<td align="left">배송완료</td>
+				<%}else if("004".equals(productvo.getProdTranCode())) { %>	
+					<td align="left">재고없음</td>
+				<%} %>
+		
 	</tr>
 	<tr>
-	<% } %>	
 		<td colspan="11" bgcolor="D6D7D6" height="1"></td>
 	</tr>
+	<% } %>	
+	<%} %>
 </table>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">

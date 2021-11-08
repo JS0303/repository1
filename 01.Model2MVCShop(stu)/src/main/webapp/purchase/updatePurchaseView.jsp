@@ -10,7 +10,7 @@
 
 	System.out.println("updatePurchaseView.jsp에서 불러온 purchaseVO : "+purchaseVO);
 	
-	System.out.println("updatePurchaseView.jsp :: 배송날짜 확인 :: "+purchaseVO.getDivyDate());
+	System.out.println("updatePurchaseView.jsp :: 배송날짜 확인 :: "+purchaseVO.getDlvyDate());
 %>
 
 
@@ -104,7 +104,7 @@
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="receiverAddr" class="ct_input_g" 
-							style="width: 100px; height: 19px" maxLength="20" 	value="<%=purchaseVO.getDivyAddr() %>" />
+							style="width: 100px; height: 19px" maxLength="20" 	value="<%=purchaseVO.getDlvyAddr() %>" />
 		</td>
 	</tr>
 	<tr>
@@ -115,7 +115,7 @@
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input		type="text" name="receiverRequest" 	class="ct_input_g" 
-							style="width: 100px; height: 19px" maxLength="20" value="<%=purchaseVO.getDivyRequest()%>"/>
+							style="width: 100px; height: 19px" maxLength="20" value="<%=purchaseVO.getDlvyRequest()%>"/>
 		</td>
 	</tr>
 	<tr>
